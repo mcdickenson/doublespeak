@@ -17,7 +17,8 @@
     "default_title": "Modify doublespeak",
     "default_icon": {
       "19": "img/doublespeak19.png",
-      "38": "img/doublespeak38.png"
+      "38": "img/doublespeak38.png",
+      "128": "img/doublespeak128.png"
     }
   }
 }
