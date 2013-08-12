@@ -1,5 +1,7 @@
 var dictionary = {
+	"adversary": "anybody",
 	"extrajudicial": "illegal",
+	"rendition": "kidnapping",
 }
 
 String.prototype.titleize = function() {
