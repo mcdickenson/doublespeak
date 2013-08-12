@@ -20,14 +20,4 @@ function replaceDoubleSpeak(content){
   return content;
 }
 
-
-chrome.browserAction.onClicked.addListener(function(tab) {
-	chrome.tabs.duplicate(tab.id, function(tab){
-		chrome.tabs.executeScript(null,
-			// {code:"document.body.style.backgroundColor='red'"
-			// {code:"document.body.innerHTML=replaceDoubleSpeak(document.body.innerHTML)"
-			{code:'document.body.innerHTML=document.body.innerHTML.replace(new RegExp("extrajudicial", "g"), "illegal")'
-		});
-	});
-});
-
+document.body.innerHTML = replaceDoubleSpeak(document.body.innerHTML);
