@@ -1,19 +1,13 @@
-var dictionary = {
-	"adversary": "anybody",
-	"extrajudicial": "illegal",
-	"rendition": "kidnapping",
-}
-
 String.prototype.titleize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
-function replaceDoubleSpeak(dictionary, content){
-
-	var patterns = [], 
-    patternHash = {},
-    oldkey, key, index = 0,
-    output = [];
+function replaceDoubleSpeak(content){
+	var dictionary = {
+		"adversary": "anybody",
+		"extrajudicial": "illegal",
+		"rendition": "kidnapping",
+	}
 
 	for (key in dictionary) {
 		content = content.replace(new RegExp(key, "g"), dictionary[key]);
@@ -26,4 +20,14 @@ function replaceDoubleSpeak(dictionary, content){
   return content;
 }
 
-document.body.innerHTML = replaceDoubleSpeak(dictionary, document.body.innerHTML);
+
+chrome.browserAction.onClicked.addListener(function(tab) {
+	chrome.tabs.duplicate(tab.id, function(tab){
+		chrome.tabs.executeScript(null,
+			// {code:"document.body.style.backgroundColor='red'"
+			// {code:"document.body.innerHTML=replaceDoubleSpeak(document.body.innerHTML)"
+			{code:'document.body.innerHTML=document.body.innerHTML.replace(new RegExp("extrajudicial", "g"), "illegal")'
+		});
+	});
+});
+
